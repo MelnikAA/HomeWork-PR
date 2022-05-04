@@ -1,4 +1,4 @@
-﻿// try_catch.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+// try_catch.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
@@ -7,34 +7,38 @@
 using namespace std;
 
 
-class A
+class Complex
 {
 public:
 	double Re;
 	double Lm;
 };
 
+void enter(Complex& complex, bool& exit)
+{
+	cout << "Введите веществ часть: " ;
+	cin >> complex.Re;
+	if (cin.fail()) {
+		throw 1;
+	}
+	cout << "\nВведите мним часть: " ;
+	cin >> complex.Lm;
+	if (cin.fail()) {
+		throw "fail";
+	}
+	exit = false;
+}
 
 int main()
 {
 	setlocale(LC_ALL, "Ru");
 	bool exit = true;
-	A complex;
+	Complex complex;
 	while (exit)
 	{
 		try
 		{
-			cout << "Введите веществ часть: ";
-			cin >> complex.Re;
-			if (cin.fail()) {
-				throw 1;
-			}
-			cout << "\nВведите мним часть: ";
-			cin >> complex.Lm;
-			if (cin.fail()) {
-				throw "fail";
-			}
-			exit = false;
+			enter(complex, exit);
 		}
 		catch (int er)
 		{
